@@ -4,14 +4,13 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Run tests
+        uses: actions/checkout@v1
+        uses: actions/setup-node@v1
         with:
           node-version: '13.x'
-      - name: Run tests
-      - run: npm install
-      - run: npm test
+        run: |
+          npm install
+          npm test
