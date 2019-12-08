@@ -22,4 +22,10 @@ describe('loading express', function () {
       .get('/status')
       .expect(200, done)
   })
+
+  it('swagger is there: /api-docs', (done) => {
+    request(server)
+      .get('/api-docs')
+      .expect(200, done)
+  })
 })

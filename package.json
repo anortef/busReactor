@@ -30,7 +30,7 @@
     "lint": "./node_modules/.bin/eslint src",
     "start": "node .",
     "debug": "./node_modules/nodemon/bin/nodemon.js --expose-gc --inspect=0.0.0.0:9999 .",
-    "check-coverage": "nyc check-coverage --lines 0 --functions 0 --branches 0",
+    "check-coverage": "nyc check-coverage --lines 80 --functions 80 --branches 80",
     "test": "npm run lint && nyc mocha test --reporter nyan --recursive --exit && npm run check-coverage"
   },
   "nyc": {
