@@ -1,0 +1,62 @@
+{
+  "name": "busreactor",
+  "version": "1.0.0",
+  "description": "A little app that does an action when a message is received on a bus",
+  "main": "src/index.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bunyan": "^1.8.12",
+    "express": "^4.17.1",
+    "express-swagger-generator": "^1.1.15"
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.17.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.1.0",
+    "mocha": "^6.2.2",
+    "nock": "^11.7.0",
+    "nodemon": "^2.0.1",
+    "nyc": "^14.1.1",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "start": "node .",
+    "debug": "./node_modules/nodemon/bin/nodemon.js --expose-gc --inspect=0.0.0.0:9999 .",
+    "check-coverage": "nyc check-coverage --lines 90 --functions 90 --branches 90",
+    "test": "npm run lint && nyc mocha test --reporter nyan --ui tdd --recursive --exit && npm run check-coverage"
+  },
+  "nyc": {
+    "extension": [
+      ".js"
+    ],
+    "exclude": [
+      "**/test/**",
+      "**/coverage/**",
+      "**/node_modules/**",
+      "**/src/dto/**",
+      "**/src/routes/**",
+      "**/src/providers/bus/**"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text-summary"
+    ],
+    "all": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
+  },
+  "author": "Adrián Norte",
+  "license": "ISC"
+}
